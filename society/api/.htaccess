@@ -1,0 +1,9 @@
+# Do not remove this line, otherwise mod_rewrite rules will stop working
+RewriteEngine On
+RewriteBase /api/
+
+php_value upload_tmp_dir /api/uploads/
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-D
+RewriteRule ^(.*)$ index.php/$1 [L]

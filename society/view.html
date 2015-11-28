@@ -1,0 +1,224 @@
+<div id="details" class="modal fade" role="dialog" aria-labelledby="myModalLabel" tabindex="-1">
+	<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">x</span><span class="sr-only">Close</span></button>
+					<h2 class="modal-title" id="label">Driver Info</h2>
+				</div>
+				<div class="modal-body">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12 driverinfo">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+	</div>
+<div class="row">
+	<div id="breadcrumb" class="col-xs-12">
+		<a href="#" class="show-sidebar">
+			<i class="fa fa-bars"></i>
+		</a>
+		<ol class="breadcrumb pull-left">
+			<li><a href="#">Dashboard</a></li>
+			<li><a href="#">Driver Module</a></li>
+			<li><a href="#">Drivers</a></li>
+		</ol>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-12">
+		<div class="box">
+			<div class="box-header">
+				<div class="box-name">
+					<span>Drivers</span>
+				</div>
+				<div class="box-icons">
+					<a class="collapse-link">
+						<i class="fa fa-chevron-up"></i>
+					</a>
+					<a class="expand-link">
+						<i class="fa fa-expand"></i>
+					</a>
+					<a class="close-link">
+						<i class="fa fa-times"></i>
+					</a>
+				</div>
+				<div class="no-move"></div>
+			</div>
+			<div class="box-content no-padding">
+				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
+					<thead>
+						<tr>
+							<th>Driver ID</th>
+							<th>Full Name</th>
+							<th>Status</th>
+							<th>Location</th>
+							<th>Gender</th>
+						</tr>
+					</thead>
+					<tbody>
+					<!-- Start: list_row -->
+						
+					<!-- End: list_row -->
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+var geocoder;
+function AllTables(){
+	TestTable1();
+	LoadSelect2Script(MakeSelect2);
+}
+function MakeSelect2(){
+	$('select').select2();
+	$('.dataTables_filter').each(function(){
+		$(this).find('label input[type=text]').attr('placeholder', 'Search');
+	});
+}
+function codeLatLng(lat,lon)
+{
+	geocoder= new google.maps.Geocoder();
+	var fallback = lat + ',' +lon;
+	var latlng = new google.maps.LatLng(lat, lon);
+	
+	geocoder.geocode({'latLng': latlng}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) 
+	  {
+        if (results[1]) 
+		{
+			fallback=results[1].formatted_address;
+			return fallback;
+        }
+		else
+		{
+			return fallback;
+		}
+      } else {
+        return fallback;
+      }
+    });
+}
+
+function parseXMLd(xml)
+{
+$('.driverinfo').empty();
+
+	var id = $(xml).find('id').text();
+	var name = $(xml).find('firstname').text()+ " " +$(this).find('lastname').text();
+	var email = $(xml).find('emailid').text();
+	var dob = $(xml).find('dob').text();
+	var gender = $(xml).find('gender').text();
+	var address = $(xml).find('address').text();
+	var vechile = $(xml).find('vechile').text();
+	var license = $(xml).find('license').text();
+	var handset = $(xml).find('handset').text();
+	var licensedoc = $(xml).find('licensedoc').text();
+	var pandoc = $(xml).find('pandoc').text();
+	var insurancedoc = $(xml).find('insurancedoc').text();
+	var bikepicdoc = $(xml).find('bikepicdoc').text();
+	var addressdoc = $(xml).find('addressdoc').text();
+	
+	var html = '<div class="row"><div class="col-md-2">Driver ID:</div><div class="col-md-4"><strong>' + id + '</strong></div></div>';
+	html += '<div class="row"><div class="col-md-2">Name:</div><div class="col-md-4"><strong>' + name + '</strong></div></div>';
+	html += '<div class="row"><div class="col-md-2">Email ID:</div><div class="col-md-4"><strong>' + email + '</strong></div></div>';
+	html += '<div class="row"><div class="col-md-2">Date of Birth:</div><div class="col-md-4"><strong>' + dob + '</strong></div></div>';
+	html += '<div class="row"><div class="col-md-2">Gender:</div><div class="col-md-4"><strong>' + gender + '</strong></div></div>';
+	html += '<div class="row"><div class="col-md-2">Address:</div><div class="col-md-4"><strong>' + address + '</strong></div></div>';
+	html += '<div class="row"><div class="col-md-2">Vechile Number:</div><div class="col-md-4"><strong>' + vechile + '</strong></div></div>';
+	html += '<div class="row"><div class="col-md-2">License Number:</div><div class="col-md-4"><strong>' + license + '</strong></div></div>';
+	html += '<div class="row"><div class="col-md-2">Handset:</div><div class="col-md-4"><strong>' + handset + '</strong></div></div>';
+	html += '<div class="row"><div class="col-md-2">License Document:</div><div class="col-md-4"><a class="fancybox" rel="gallery1" href="' + licensedoc + '" title="License Document"><img src="' + licensedoc + '" alt="" /></a></div></div>';
+	html += '<div class="row"><div class="col-md-2">Pan Card Documnet:</div><div class="col-md-4"><a class="fancybox" rel="gallery1" href="' + pandoc + '" title="Pancard Document"><img src="' + pandoc + '" alt="" /></a></div></div>';
+	html += '<div class="row"><div class="col-md-2">Insurance:</div><div class="col-md-4"><a class="fancybox" rel="gallery1" href="' + insurancedoc + '" title="Insurance"><img src="' + insurancedoc + '" alt="" /></a></div></div>';
+	html += '<div class="row"><div class="col-md-2">Bike:</div><div class="col-md-4"><a class="fancybox" rel="gallery1" href="' + bikepicdoc + '" title="Bike"><img src="' + bikepicdoc + '" alt="" /></a></div></div>';
+	html += '<div class="row"><div class="col-md-2">Address:</div><div class="col-md-4"><a class="fancybox" rel="gallery1" href="' + addressdoc + '" title="Address"><img src="' + addressdoc + '" alt="" /></a></div></div>';
+	
+	$('.driverinfo').append($(html));
+//	alert(html);
+	$('#details').modal('show');
+}
+
+function parseXML(xml)
+{
+$('tbody').empty();
+$(xml).find('driver').each(function()
+  {
+	var id = $(this).find('id').text();
+	var name = $(this).find('firstname').text()+ " " +$(this).find('lastname').text();
+	var status = $(this).find('status').text();
+	var lat = $(this).find('latitude').text();
+	var lon = $(this).find('longitude').text();
+	var fallback = lat + ',' +lon;
+	var gender = $(this).find('gender').text();
+	
+	var html = '<tr style="cursor:pointer;"><td>' + id + '</td>';
+	html += '<td><a href="#" class="openprofile" value="'+id+'">' + name + '</td>';
+	html += '<td>' + status + '</td>';
+	html += '<td><a href="#" class="openmap" lat="'+lat+'" lon="'+lon+'">' + fallback + '</a></td>';
+	html += '<td>' + gender + '</td></tr>';
+	
+	$('tbody').append($(html));
+  });  
+  
+  $('tbody').on('click', '.openprofile', function(){
+	var rowid=$(this).attr("value");
+		$.ajax({
+		type: "GET",
+		url: "../../api/driver/"+rowid,
+		dataType: "xml",
+		success: parseXMLd
+	  });
+  });
+  
+  $('tbody').on('click', '.openmap', function(){
+	var lat=$(this).attr("lat");
+	var lng=$(this).attr("lon");
+	$('.driverinfo').empty();
+	var html ='<div id="map-canvas" style="height:500px;"></div>';
+	$('.driverinfo').append($(html));
+	var mapCanvas = document.getElementById('map-canvas');
+	var mapOptions = {
+	  center: new google.maps.LatLng(lat, lng),
+	  zoom: 11,
+	  mapTypeId: google.maps.MapTypeId.ROADMAP
+	};
+	var map = new google.maps.Map(mapCanvas, mapOptions);
+	var marker = new google.maps.Marker({
+	position: map.getCenter(),
+	map: map
+	});
+	$('#details').modal('show');
+  });
+}
+
+function DemoGallery(){
+	$('.fancybox').fancybox({
+		openEffect	: 'none',
+		closeEffect	: 'none'
+	});
+}
+
+$(document).ready(function() {
+var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src = 'https://maps.googleapis.com/maps/api/js';
+  document.body.appendChild(script);
+	$.ajax({
+    type: "GET",
+    url: "../../api/driver/",
+    dataType: "xml",
+    success: parseXML
+  });
+	// Load Datatables and run plugin on tables
+	LoadDataTablesScripts(AllTables);
+	LoadFancyboxScript(DemoGallery);
+	// Add Drag-n-Drop feature
+	WinMove();
+});
+</script>

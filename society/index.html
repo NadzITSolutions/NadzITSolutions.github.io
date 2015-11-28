@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Registration</title>
+	
+	<!-- core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/prettyPhoto.css" rel="stylesheet">
+	<link href="css/fileinput.min.css" rel="stylesheet">
+	<link href="css/bootstrapValidator.min.css" rel="stylesheet">
+	<link href="css/datepicker.css" rel="stylesheet">
+    <link href="css/responsive.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->       
+    <link rel="shortcut icon" href="images/ico/favicon.png">
+</head><!--/head-->
+
+<body class="homepage">
+	<div id="progress" class="modal fade" role="dialog" aria-labelledby="progressdialog" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header info">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">x</span><span class="sr-only">Close</span></button>
+					<h2 class="modal-title" id="loginlabel">Submitting Form</h2>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-xs-12">
+							<p>Please wait while we upload your details. Do not click Back or Refresh.</p>
+							<div class="progress">
+							  <div id="progressBar" class="progress-bar progress-bar-striped active" role="progressbar"  aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+							  </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="message" class="modal fade" role="dialog" aria-labelledby="messagedialog" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header info">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">x</span><span class="sr-only">Close</span></button>
+					<h2 class="modal-title" id="loginlabel">Message</h2>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-xs-12">
+							<h3 id="returnmsg">Thank you. Please check your mailbox for confirmation email</h3>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<div>
+	<section id="register">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2">
+					<div class="row">
+						<h1 class="formheader" style="color:#000;">Driver Registration</h1>
+					</div>
+					<form name="drvregister" id="drvregister" action="api/driver" enctype="multipart/form-data" class="form-horizontal">
+							<div class="form-group">
+								<label for="firstname" class="col-lg-3 control-label">Full Name</label>
+									<div class="col-lg-4">
+										<input type="text" class="form-control" id="firstname" name="firstname" value="" placeholder="First Name" required="" title="Please enter your First Name">
+									</div>
+									<div class="col-lg-4">
+										<input type="text" class="form-control" id="lastname" name="lastname" value="" placeholder="Last Name" required="" title="Please enter your Last Name">
+									</div>
+								<span class="help-block"></span>
+							</div>
+							<div class="form-group">
+								<label for="emailid" class="col-lg-3 control-label">Email Address</label>
+								<div class="col-lg-6">
+									<input type="text" class="form-control" id="emailid" name="emailid" value="" placeholder="Email ID" required="" title="Please enter your Email ID">
+								</div>
+								<span class="help-block"></span>
+							</div>
+							<div class="form-group">
+								<label for="dob" class="col-lg-3 control-label">Date of Birth</label>
+								<div class="col-lg-4">
+									<input type="datetime" class="form-control datepicker" id="dob" name="dob" value="" placeholder="dd/mm/yyyy" required="" title="Please enter your Date of Birth">
+								</div>
+								<span class="help-block"></span>
+							</div>
+							<div class="form-group">
+								<label for="gender" class="col-lg-3 control-label">Gender</label>
+								<div class="col-lg-5">
+									<div class="radio">
+										<label>
+											<input type="radio" class="radio" id="gender" name="gender" value="male" required="" title="Please mention your Gender"> Male
+										</label>
+									</div>
+									<div class="radio">
+										<label>
+											<input type="radio" class="radio" id="gender" name="gender" value="female" required="" title="Please mention your Gender"> Female
+										</label>
+									</div>
+								<span class="help-block"></span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="address" class="col-lg-3 control-label">Address</label>
+								<div class="col-lg-5">
+									<textarea class="form-control" rows="4" id="address" name="address" value="" placeholder="Address" required="" title="Please enter your Address"></textarea>
+								</div>
+								<span class="help-block"></span>
+							</div>
+							<div class="form-group">
+								<label for="vehiclenumber" class="col-lg-3 control-label">Vehicle Reg. Number</label>
+								<div class="col-lg-4">
+									<input type="text" class="form-control" id="vehiclenumber" name="vehiclenumber" value="" placeholder="Vehicle Registration Number" required="" title="Please enter your vehicle registration number">
+								</div>
+								<span class="help-block"></span>
+							</div>
+							<div class="form-group">
+								<label for="licensenumber" class="col-lg-3 control-label">License Number</label>
+								<div class="col-lg-4">
+									<input type="text" class="form-control" id="licensenumber" name="licensenumber" value="" data-toggle="tooltip" data-placement="left" placeholder="License Number" required="" title="Please enter your License Number">
+								</div>
+								<span class="help-block"></span>
+							</div>
+							<div class="form-group">
+								<label for="handset" class="col-lg-3 control-label">Handset Model</label>
+								<div class="col-lg-4">
+									<input type="text" class="form-control" id="handset" name="handset" value="" data-toggle="tooltip" data-placement="left" placeholder="Handset Model" required="" title="Please enter your Handset Model">
+								</div>
+								<span class="help-block"></span>
+							</div>
+							<fieldset class="docup">
+								<legend class="docup">Upload Documents</legend>
+								<div class="form-group">
+									<label for="license" class="col-lg-3 control-label">License</label>
+									<div class="col-lg-7">
+										<input type="file" class="form-control file" accept="image/*" id="license" name="license" value="" placeholder="License" required="" title="Please Upload your License SoftCopy">
+									</div>
+									<span class="help-block"></span>
+								</div>
+								<div class="form-group">
+									<label for="pancard" class="col-lg-3 control-label">PAN Card</label>
+									<div class="col-lg-7">
+										<input type="file" class="form-control file" accept="image/*" id="pancard" name="pancard" value="" placeholder="PAN Card" required="" title="Please Upload your PAN Card SoftCopy">
+									</div>
+									<span class="help-block"></span>
+								</div>
+								<div class="form-group">
+									<label for="insurance" class="col-lg-3 control-label">Bike Insurance Papers</label>
+									<div class="col-lg-7">
+										<input type="file" class="form-control file" accept="image/*" id="insurance" name="insurance" value="" placeholder="Bike Insurance Papers" required="" title="Please Upload your Bike Insurance Papers SoftCopy">
+									</div>
+									<span class="help-block"></span>
+								</div>
+								<div class="form-group">
+									<label for="bikepic" class="col-lg-3 control-label">Picture of your Bike</label>
+									<div class="col-lg-7">
+										<input type="file" class="form-control file" accept="image/*" id="bikepic" name="bikepic" value="" placeholder="Picture of your Bike" required="" title="Please Upload Picture of your Bike">
+									</div>
+									<span class="help-block"></span>
+								</div>
+								<div class="form-group">
+									<label for="addressproof" class="col-lg-3 control-label">Address Proof</label>
+									<div class="col-lg-7">
+										<input type="file" class="form-control file" accept="image/*" id="addressproof" name="addressproof" value="" placeholder="Address Proof" required="" title="Please Upload your Address Proof SoftCopy">
+									</div>
+									<span class="help-block"></span>
+								</div>
+							</fieldset>
+							<div class="form-group">
+								<label id="captchaOperation" class="col-lg-3 control-label"></label>
+								<div class="col-lg-3">
+									<input type="text" class="form-control" name="captcha"/>
+								</div>
+								<span class="help-block"></span>
+							</div>
+						<div class="row">
+							<div class="col-md-8 form-group">
+								<label><input type="checkbox" name="agree" id="agree"> I Agree to terms and conditions</label>
+								<span class="help-block"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-2 col-md-offset-2 form-group">
+								<button id="submit" type="submit" class="btn btn-success">Register</button>
+							</div>
+							<div class="col-md-2 col-md-offset-2 form-group">
+								<button id="reset" type="reset" class="btn btn-default">Reset</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.prettyPhoto.js"></script>
+    <script src="js/jquery.isotope.min.js"></script>
+    <script src="js/wow.min.js"></script>
+	<script src="js/main.js"></script>
+	<script src="js/fileinput.min.js"></script>
+	<script>
+		$(".file").fileinput({
+		maxFileSize: 100,
+		minFileSize: 50,
+		previewFileType: "image",
+		browseClass: "btn btn-warning",
+		showRemove: false,
+		showUpload: false
+		});
+	</script>
+	<script src="js/bootstrap-datepicker.js"></script>
+	<script>
+	$('.datepicker').datepicker({
+	autoclose:true,
+	format:'dd/mm/yyyy'
+	})
+	</script>
+	<script src="js/bootstrapValidator.min.js"></script>
+	<script src="js/regform.js"></script>
+</body>
+</html>
